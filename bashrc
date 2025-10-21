@@ -4,6 +4,10 @@ umask 0077
 
 set -o vi
 
+if [ ! -z $TMUX ]; then
+  $HOME/.ensure_tmux_logging_on.sh
+fi
+
 export HISTSIZE=999999
 export HISTFILESIZE=999999
 
