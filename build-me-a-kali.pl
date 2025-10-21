@@ -134,6 +134,19 @@ if ( -f $git_bashrc_file ) {
         die "unable to copy $git_vimrc_file to $vimrc";
 }
 
+&printlog("Customizing ~/.tmux.conf");
+my $git_tmux_conf = "${homedir}/git/build-me-a-kali/tmux.conf";
+my $tmux_conf = "${homedir}/.tmux.conf";
+if ( -f $tmux_conf ) {
+    print "renaming $tmux_conf to ${tmux_conf}.orig\n";
+    rename $tmux_conf, "${tmux_conf}.orig" or 
+        die "unable to back up $tmux_conf";
+}
+if ( -f $git_tmux_conf ) {
+    copy($git_tmux_conf, $tmux_conf) or 
+        die "unable to copy $git_tmux_conf to $tmux_conf";
+}
+system "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm";
 
 
 
