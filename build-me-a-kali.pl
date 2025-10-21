@@ -108,7 +108,7 @@ chdir $gitdir or die "Unable to chdir to $gitdir";
 chdir $homedir or die "Unable to chdr to $homedir";
 
 &printlog("Customizing ~/.bashrc");
-my $git_bashrc_file = "${homedir}/git/build-me-a-kali/bashrc";
+my $git_bashrc_file = "${homedir}/git/build-me-a-kali/files/bashrc";
 my $bashrc_custom_file = "${homedir}/.build_me_a_kali_bashrc";
 if ( -f $bashrc_custom_file ) {
     print "renaming $bashrc_custom_file to ${bashrc_custom_file}.orig\n";
@@ -122,7 +122,7 @@ if ( -f $git_bashrc_file ) {
 system "echo \"source $bashrc_custom_file\" >> $homedir/.bashrc";
 
 &printlog("Customizing ~/.vimrc");
-my $git_vimrc_file = "${homedir}/git/build-me-a-kali/vimrc";
+my $git_vimrc_file = "${homedir}/git/build-me-a-kali/files/vimrc";
 my $vimrc = "${homedir}/.vimrc";
 if ( -f $vimrc ) {
     print "renaming $vimrc to ${vimrc}.orig\n";
@@ -135,9 +135,9 @@ if ( -f $git_bashrc_file ) {
 }
 
 &printlog("Customizing ~/.tmux.conf");
-my $git_tmux_conf = "${homedir}/git/build-me-a-kali/tmux.conf";
+my $git_tmux_conf = "${homedir}/git/build-me-a-kali/files/tmux.conf";
 my $tmux_conf = "${homedir}/.tmux.conf";
-my $git_logging_script = "${homedir}/git/build-me-a-kali/ensure_tmux_logging_on.sh";
+my $git_logging_script = "${homedir}/git/build-me-a-kali/files/ensure_tmux_logging_on.sh";
 my $logging_script = "${homedir}/.ensure_tmux_logging_on.sh";
 if ( -f $tmux_conf ) {
     print "renaming $tmux_conf to ${tmux_conf}.orig\n";
