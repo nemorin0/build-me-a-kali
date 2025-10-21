@@ -170,7 +170,6 @@ print "5. Happy hacking!\n";
 print color ("reset");
 
 # To do:
-# * tmux logging
 # * nvim/mousetrap install
 # * firefox bookmarks
 # * sample pictures (preferably cobra themed)
