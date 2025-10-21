@@ -70,7 +70,7 @@ if ( ! -f $private_key ) {
 } else { &printlog("Skipping generating SSH keys; they already exist in $private_key"); }
 
 &printlog("Creating directory structure");
-my @directory_list = qw( artifacts transfer transfer/tools transfer/tools/linux transfer/tools/windows transfer/shells transfer/exploits tmux_logs);
+my @directory_list = qw( artifacts transfer transfer/tools transfer/tools/linux transfer/tools/windows transfer/shells transfer/exploits tmux-logs);
 foreach my $directory (@directory_list) {
     my $absolute_directory = "${homedir}/${directory}";
     if ( ! -d $absolute_directory ) {
@@ -137,6 +137,8 @@ if ( -f $git_bashrc_file ) {
 &printlog("Customizing ~/.tmux.conf");
 my $git_tmux_conf = "${homedir}/git/build-me-a-kali/tmux.conf";
 my $tmux_conf = "${homedir}/.tmux.conf";
+my $git_logging_script = "${homedir}/git/build-me-a-kali/ensure_tmux_logging_on.sh";
+my $logging_script = "${homedir}/.ensure_tmux_logging_on.sh";
 if ( -f $tmux_conf ) {
     print "renaming $tmux_conf to ${tmux_conf}.orig\n";
     rename $tmux_conf, "${tmux_conf}.orig" or 
@@ -146,23 +148,25 @@ if ( -f $git_tmux_conf ) {
     copy($git_tmux_conf, $tmux_conf) or 
         die "unable to copy $git_tmux_conf to $tmux_conf";
 }
+copy($git_logging_script, $logging_script) or die "unable to copy $git_logging_script to $logging_script";
+chmod 0700, $logging_script;
 system "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm";
-
 
 
 &printlog("Postinstallation instructions");
 print color ("bold green");
-print "Copy the following SSH key to github:\n";
+print "1. Copy the following SSH key to github:\n";
 print color ("reset");
 system "cat ${private_key}.pub";
 print color ("bold green");
-print "Then run the following commands:\n";
+print "2. Then run the following commands:\n";
 print color ("reset");
 print 'git clone git@github.com:nemorin0/notes.git' . "\n";
 print 'git clone git@github.com:nemorin0/htb.git' . "\n";
 print color ("bold green");
-print "Don't forget to copy over your bash history, which might come in handy!\n";
-print "Happy hacking!\n";
+print "3. In tmux, run CTRL-B I to set up tmux plugins and logging\n";
+print "4. Don't forget to copy over your bash history, which might come in handy!\n";
+print "5. Happy hacking!\n";
 print color ("reset");
 
 # To do:

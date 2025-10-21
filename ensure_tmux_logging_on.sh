@@ -7,7 +7,7 @@ CURRENT_DIR="$TMUX_LOGGING_SCRIPTS_DIR"
 
 source "$CURRENT_DIR/variables.sh"
 source "$CURRENT_DIR/shared.sh"
-
+logging_full_filename="${logging_path}/tmux-logs/${logging_filename}"
 
 start_pipe_pane() {
 	local file=$(expand_tmux_format_path "${logging_full_filename}")
