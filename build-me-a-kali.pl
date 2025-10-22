@@ -109,17 +109,16 @@ chdir $homedir or die "Unable to chdr to $homedir";
 
 &printlog("Customizing ~/.bashrc");
 my $git_bashrc_file = "${homedir}/git/build-me-a-kali/files/bashrc";
-my $bashrc_custom_file = "${homedir}/.build_me_a_kali_bashrc";
-if ( -f $bashrc_custom_file ) {
-    print "renaming $bashrc_custom_file to ${bashrc_custom_file}.orig\n";
-    rename $bashrc_custom_file, "${bashrc_custom_file}.orig" or 
-        die "unable to back up $bashrc_custom_file";
+my $bashrc_file = "${homedir}/.bashrc";
+if ( -f $bashrc_file ) {
+    print "renaming $bashrc_file to ${bashrc_file}.orig\n";
+    rename $bashrc_file, "${bashrc_file}.orig" or 
+        die "unable to back up $bashrc_file";
 }
 if ( -f $git_bashrc_file ) {
-    copy($git_bashrc_file, $bashrc_custom_file) or
-        die "unable to copy $git_bashrc_file to $bashrc_custom_file";
+    copy($git_bashrc_file, $bashrc_file) or
+        die "unable to copy $git_bashrc_file to $bashrc_file";
 }
-system "echo \"source $bashrc_custom_file\" >> $homedir/.bashrc";
 
 &printlog("Customizing ~/.vimrc");
 my $git_vimrc_file = "${homedir}/git/build-me-a-kali/files/vimrc";
@@ -161,12 +160,14 @@ system "cat ${private_key}.pub";
 print color ("bold green");
 print "2. Then run the following commands:\n";
 print color ("reset");
+print 'cd ~/git' . "\n";
 print 'git clone git@github.com:nemorin0/notes.git' . "\n";
 print 'git clone git@github.com:nemorin0/htb.git' . "\n";
 print color ("bold green");
 print "3. In tmux, run CTRL-B I to set up tmux plugins and logging\n";
 print "4. Don't forget to copy over your bash history, which might come in handy!\n";
-print "5. Happy hacking!\n";
+print "5. Reboot.\n";
+print "6. Happy hacking!\n";
 print color ("reset");
 
 # To do:
