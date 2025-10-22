@@ -48,20 +48,20 @@ sub printlog {
 my $homedir = "/home/$username";
 chdir $homedir or die "Unable to chdr to $homedir";
 
+my $passwd_entry = `getent passwd $username`;
+if ( $passwd_entry !~ $shell ) {
+    printlog "Changing shell to $shell";
+    system "chsh $username -s $shell";
+} else { &printlog("Skipping changing shell; it\'s already set to $shell"); }
+
 &printlog("Upgrading system");
-system "sudo apt -y update && sudo apt full-upgrade";
+system "sudo apt -y update && sudo apt -y full-upgrade";
 
 &printlog("Installing software");
 system "sudo apt -y install perl-doc neovim sliver bloodhound gdb keepass2 libreoffice jq";
 
 &printlog("Removing unneeded software");
 system "sudo apt -y autoremove";
-
-my $passwd_entry = `getent passwd $username`;
-if ( $passwd_entry !~ $shell ) {
-    printlog "Changing shell to $shell";
-    system "chsh $username -s $shell";
-} else { &printlog("Skipping changing shell; it\'s already set to $shell"); }
 
 my $private_key = "/home/$username/.ssh/id_ed25519";
 if ( ! -f $private_key ) {
