@@ -23,6 +23,7 @@ https://github.com/nicocha30/ligolo-ng/releases/download/v0.8.2/ligolo-ng_proxy_
 https://github.com/Kevin-Robertson/Inveigh/raw/refs/heads/master/Inveigh.ps1
 https://github.com/SnaffCon/Snaffler/releases/download/1.0.224/Snaffler.exe
 https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.7/LaZagne.exe
+https://github.com/itm4n/PrivescCheck/releases/latest/download/PrivescCheck.ps1
 
 };
 
