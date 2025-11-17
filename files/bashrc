@@ -154,9 +154,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-source /home/me/.build_me_a_kali_bashrc
-source /home/me/.build_me_a_kali_bashrc
-source /home/me/.build_me_a_kali_bashrc
 # Build me a Kali bashrc customizations
 
 umask 0077
