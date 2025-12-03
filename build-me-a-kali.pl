@@ -59,7 +59,7 @@ if ( $passwd_entry !~ $shell ) {
 system "sudo apt -y update && sudo apt -y full-upgrade";
 
 &printlog("Installing software");
-system "sudo apt -y install perl-doc neovim sliver bloodhound gdb keepass2 libreoffice jq seclists raven";
+system "sudo apt -y install perl-doc neovim sliver bloodhound gdb keepass2 libreoffice jq seclists raven krb5-user";
 
 &printlog("Removing unneeded software");
 system "sudo apt -y autoremove";
